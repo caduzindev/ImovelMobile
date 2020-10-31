@@ -1,19 +1,19 @@
 import React from 'react'
 import { View,Text,FlatList } from 'react-native'
-import styles from './styles'
+import { styles } from './styles'
 
 const Address = ({cep,city,neigh})=>{
     const DATA =[
         {
-            name:"cep",
+            name:"CEP",
             value:cep
         },
         {
-            name:"city",
+            name:"Cidade",
             value:city
         },
         {
-            name:"neigh",
+            name:"Bairro",
             value:neigh
         },
     ]
@@ -22,7 +22,7 @@ const Address = ({cep,city,neigh})=>{
             <Text style={styles.titleAddress}>Endereço</Text>
             <FlatList
                 data={DATA}
-                renderItem={({item})=>(<Item name={item.name} value={item.value}/>)}
+                renderItem={({item})=>(<Item key={item.name} name={item.name} value={item.value}/>)}
                 keyExtractor={item=>item.name}
             />
         </View>
@@ -30,7 +30,10 @@ const Address = ({cep,city,neigh})=>{
 }
 
 const Item = ({name,value})=>(
-    <Text style={{color:'black'}}>{name}</Text>
+    <View style={styles.cardAddress}>
+        <Text style={styles.textAddress}>{name}</Text>
+        <Text style={styles.textAddress}>{value}</Text>
+    </View>
 )
 
 export default Address

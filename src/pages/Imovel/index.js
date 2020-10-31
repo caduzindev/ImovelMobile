@@ -7,9 +7,9 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
-    Modal,
-    ActivityIndicator
+    Modal
 } from 'react-native'
+import { URL_STORAGE_IMG } from '@env'
 import {useRoute,useNavigation} from '@react-navigation/native'
 import Carousel from 'react-native-snap-carousel'
 import MapView from 'react-native-maps'
@@ -19,7 +19,7 @@ import Address from '../../components/Address'
 import {useImovel} from '../../contexts/Imovel'
 
 const Imovel = ()=>{
-    const {imovel,setImovelId} = useImovel()
+    const {imovel,searchImovel,loading} = useImovel()
     const [modalVerMais,setModalVerMais] = useState(false)
     const route = useRoute()
     const navigation = useNavigation()
@@ -30,25 +30,26 @@ const Imovel = ()=>{
                 <Text>Contato</Text>
             </TouchableOpacity>
         )})
-        setImovelId(route.params.imovelId)
+        searchImovel(route.params.imovelId)
     },[]) 
 
-    const renderItem = (item)=>{
-        const path = "https://mullerimoveisrj.com.br/wp-content/uploads/2017/04/A-101.jpg"
+    const renderImg = ({item})=>{
+        const path = `${URL_STORAGE_IMG}/${item.url}`
         return <Image style={{ width: '100%', height: 300}} source={{uri:path}}/>
         
     }
-    {!!imovel && (
-        <ActivityIndicator size="large" color="blue"/>
-    )}
+   
+    if(loading){
+        return <Text>Carregando</Text>
+    }
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{route.params.title}</Text>
         
             <Carousel
-                data={[1,2,3]}
-                renderItem={renderItem}
+                data={imovel.images}
+                renderItem={renderImg}
                 sliderWidth={Dimensions.get('window').width}
                 itemWidth={300+20*2}
                 loop={true}
@@ -59,16 +60,13 @@ const Imovel = ()=>{
                 slideStyle={{height:0}}
             />
             <View style={styles.containerInfo}>
-                <Text style={styles.textInfo}>Alvenaria</Text>
-                <Text style={styles.textInfo}>R$ 2500,00</Text>
+                <Text style={styles.textInfo}>{imovel.type}</Text>
+                <Text style={styles.textInfo}>R$ {imovel.price}</Text>
             </View>
 
             <View style={styles.containerDetails}>
-                <Text style={styles.textDetails}>ALUGA</Text>
+                <Text style={styles.textStatus}>{imovel.status}</Text>
                 <ScrollView>
-                    <View style={styles.containerContent}>
-                        <Text style={styles.contentDesc}>mnajdhasjhdhadhabgasvdisahdvashbsvdgasdhsagdasvdhgasgdjasgdkhagukgudsgudsgufgdsagdgsdgfasdfsagdsafdgfasghdfgasdh</Text>
-                    </View>
                     <View style={{flex:1,justifyContent:'space-around',alignItems:'center',flexDirection:'row',marginTop:10}}>
                         <TouchableOpacity style={styles.verMais} onPress={()=>setModalVerMais(true)}>
                             <Text style={styles.textVerMais}>Ver Mais</Text>
@@ -77,6 +75,9 @@ const Imovel = ()=>{
                         <TouchableOpacity style={styles.verMais}>
                             <Text style={styles.textVerMais}>Contato</Text>
                         </TouchableOpacity>
+                    </View>
+                    <View style={styles.containerContent}>
+                        <Text style={styles.contentDesc}>{imovel.desc}</Text>
                     </View>
                 </ScrollView>
             </View>
@@ -88,20 +89,21 @@ const Imovel = ()=>{
                     <HeaderModal callback={setModalVerMais}/>
                     <ScrollView>
                         <MapView 
-                            style={{height:500,width:Dimensions.get('window').width}}
-                            initialRegion={{
-                                latitude: 37.78825,
-                                longitude: -122.4324,
+                            style={{height:300,width:Dimensions.get('window').width}}
+                            region={{
+                                latitude: -20.079886,
+                                longitude: -44.895811,
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
                         />
-
+                        
                         <Address
-                            cep="48788-5896"
-                            city="Governador Valadares"
-                            neigh="Jardim do Trevo"
+                            cep={imovel.address.cep}
+                            city={imovel.address.city}
+                            neigh={imovel.address.neigh}
                         />
+    
 
                         <Svg height="200" width="300" style={styles.circle}>
                             <Circle cx="100" cy="100" r="100" x="50" fill="white" />
@@ -114,7 +116,7 @@ const Imovel = ()=>{
                                 y="150"
                                 textAnchor="middle" 
                             >
-                                7
+                                {imovel.dorms}
                             </Texto>
                             <Rect 
                                 x="0"
@@ -137,8 +139,12 @@ const Imovel = ()=>{
                                 Numero de Quartos
                             </Texto>
                         </Svg>
-                    </ScrollView>
 
+                        <View style={styles.viewDetails}>
+                            <Text style={styles.titleDetail}>Destalhes</Text>
+                            <Text style={styles.textDetail}>{imovel.details}</Text>
+                        </View>
+                    </ScrollView>
                 </View>
             </Modal>
         </View>

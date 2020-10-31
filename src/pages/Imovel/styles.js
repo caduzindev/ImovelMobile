@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
     container:{
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
         borderTopEndRadius:30,
         padding:15
     },
-    textDetails:{
+    textStatus:{
         fontSize:50,
         width:'100%',
         borderBottomColor:'white',
@@ -73,5 +73,25 @@ export const styles = StyleSheet.create({
     numberDorms:{
         color:'white',
         fontSize:50
+    },
+    viewDetails:{
+        backgroundColor:'white',
+        flex:1,
+        borderColor:'#268ce6',
+        borderWidth:5
+    },
+    titleDetail:{
+        textAlign:'center',
+        width:Dimensions.get('window').width,
+        backgroundColor:'#268ce6',
+        color:'white',
+        fontSize:40,
+        fontStyle:'italic',
+
+    },
+    textDetail:{
+        color:'black',
+        fontSize:23,
+        padding:5
     }
 })

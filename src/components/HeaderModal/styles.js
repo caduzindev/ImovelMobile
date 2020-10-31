@@ -8,8 +8,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor:'#268ce6',
         padding:10,
-        borderBottomStartRadius:25,
-        borderBottomEndRadius:25,
     },
     closeModal:{
         height:50,

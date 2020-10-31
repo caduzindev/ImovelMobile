@@ -1,32 +1,35 @@
-import React,{createContext,useContext,useState,useEffect, useCallback} from 'react'
+import React,{createContext,useContext,useState,useEffect} from 'react'
 import http from '../services/http'
 
 const ImovelContext = createContext({})
 
 const ImovelProvider = ({children})=>{
     const [imovel,setImovel] = useState([])
-    const [ImovelId,setImovelId] = useState('')
+    const [loading,setLoading] = useState(true)
 
-    useEffect(()=>{
-        if(!!ImovelId){
-            http.get(`api/imovel/${ImovelId}`)
-            .then(result=>setImovel(result.data))
-        }
-        console.log('Imovel effect')
-    },[imovelId])
+
+
+    const searchImovel = (id)=>{
+        http.get(`api/imovel/${id}`)
+        .then(result=>{
+            setImovel(result.data)
+            setLoading(false)
+        })
+    }
 
     return(
-        <ImovelContext.Provider value={
+        <ImovelContext.Provider value={{
             imovel,
-            setImovelId
-        }>
+            searchImovel,
+            loading
+        }}>
             {children}
         </ImovelContext.Provider>
     )
 }
 
 export const useImovel = ()=>{
-    return {imovel,setImovel,setImovelId} = useContext(ImovelContext)
+    return {imovel,searchImovel,loading} = useContext(ImovelContext)
 }
 
 export default ImovelProvider
