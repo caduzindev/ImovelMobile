@@ -1,0 +1,57 @@
+import { StyleSheet,Dimensions } from 'react-native'
+
+export const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        padding:15,
+        flexDirection:'row',
+        justifyContent:"space-around",
+        flexWrap:"wrap"
+    },
+    inputAndroid:{
+        borderWidth:1,
+        borderColor:'silver',
+        fontSize:19,
+        marginTop:15,
+        width:Dimensions.get('window').width/2.2,
+        height:41,
+        color:'black'
+    },
+    inputIOS:{
+        borderWidth:1,
+        borderColor:'silver',
+        fontSize:19,
+        marginTop:15,
+        width:Dimensions.get('window').width/2.2,
+        height:41,
+        color:'black'
+    },
+    placeholder:{
+        color:"#000",
+        fontStyle:'italic',
+        fontWeight:'500'
+    },
+    title:{
+        fontSize:35,
+        fontWeight:"bold",
+        borderBottomColor:'black',
+        borderBottomWidth:3,
+        marginLeft:"auto",
+        marginRight:"auto",
+    },
+    filter:{
+        width:200,
+        height:50,
+        backgroundColor:'blue',
+        marginTop:20,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:10
+    },
+    buttonText:{
+        color:'#fff',
+        fontSize:20,
+        letterSpacing:3,
+        fontWeight:'bold'
+    }
+})
