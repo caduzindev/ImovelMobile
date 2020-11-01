@@ -9,10 +9,6 @@ export const styles = StyleSheet.create({
         padding:5,
         marginTop:10,
     },
-    containerModal:{
-        flex:1,
-        backgroundColor:'#4682B4'
-    },
     verMais:{
         width:150,
         height:50,
@@ -31,7 +27,7 @@ export const styles = StyleSheet.create({
         color:'white',
         fontSize:17,
         width:'100%'
-    },
+    }, 
     title:{
         color:'white',
         fontSize:40,
@@ -66,32 +62,8 @@ export const styles = StyleSheet.create({
         color:'white',
         padding:3,
     },
-    circle:{
-        alignSelf:'center',
-        marginTop:30
-    },
     numberDorms:{
         color:'white',
         fontSize:50
     },
-    viewDetails:{
-        backgroundColor:'white',
-        flex:1,
-        borderColor:'#268ce6',
-        borderWidth:5
-    },
-    titleDetail:{
-        textAlign:'center',
-        width:Dimensions.get('window').width,
-        backgroundColor:'#268ce6',
-        color:'white',
-        fontSize:40,
-        fontStyle:'italic',
-
-    },
-    textDetail:{
-        color:'black',
-        fontSize:23,
-        padding:5
-    }
 })

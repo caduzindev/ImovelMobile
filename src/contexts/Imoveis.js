@@ -18,23 +18,16 @@ const ImoveisProvider = ({children})=>{
     },[])
 
     const filterImoveis = (filter)=>{
-        let result = Object.fromEntries(Object.entries(filter)
+        const result = Object.fromEntries(Object.entries(filter)
         .filter(item=>!!item[1])) 
 
-        let querystring = (function(){
-            let str = [];
-                for (let p in result)
-                if (result .hasOwnProperty(p)) {
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(result[p]));
-                }
-            return str.join("&");
-        })()
-
-        searchImoveisFilter(querystring)
+        searchImoveisFilter(result)
     }
 
-    const searchImoveisFilter= (querystring)=>{
-        http.get(`api/?${querystring}`)
+    const searchImoveisFilter= (obj)=>{
+        http.get(`api`,{
+            params:{...obj}
+        })
         .then(result=>{
             if(result.data.error){
                 setError(result.data.message)

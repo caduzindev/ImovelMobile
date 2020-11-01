@@ -59,8 +59,8 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
-                        {label:"Alvenaria",value:"alvenaria"},
-                        {label:"Condominio",value:"condominio"}
+                        {label:"Alvenaria",value:"Alvenaria"},
+                        {label:"Condominio",value:"Condominio"},
                     ]}
                     placeholder={{
                         label:"Tipo do Imovel",
