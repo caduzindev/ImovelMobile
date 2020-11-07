@@ -4,7 +4,8 @@ import { URL_SERVER } from '@env'
 const http = axios.create({
     baseURL:`${URL_SERVER}`,
     header:{
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Accept':'application/json'
     }
 })
 

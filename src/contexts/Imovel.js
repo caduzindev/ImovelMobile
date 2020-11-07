@@ -6,6 +6,7 @@ const ImovelContext = createContext({})
 
 const ImovelProvider = ({children})=>{
     const [imovel,setImovel] = useState([])
+
     const [contactInfo,setContactInfo] = useState({
         name:'',
         email:'',
@@ -21,13 +22,21 @@ const ImovelProvider = ({children})=>{
         })
     }
 
-    const submitMessage = ()=>{
+    const submitMessage = (idImovel)=>{
         if(contactInfo.name && contactInfo.email && contactInfo.message){
-            console.log(contactInfo)
+            http.post(`api/imovel/sendOrder/${idImovel}`,contactInfo)
+            .then(result=>{
+                if(result.hasOwnProperty('errors')){
+                    Alert.alert('Contato não enviado')
+                    return
+                }
+                Alert.alert('Contato Enviado com sucesso')
+                setContactInfo({})
+                return
+            })
             setContactInfo({})
             return
         }
-        Alert.alert('Por Favor Preencha todos os campos')
     }
 
     return(

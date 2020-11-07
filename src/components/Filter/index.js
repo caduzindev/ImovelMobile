@@ -46,6 +46,7 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
+                        { label: 'Nenhum', value:null },
                         {label:"Aluga",value:"aluga"},
                         {label:"Venda",value:"venda"}
                     ]}
@@ -59,8 +60,11 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
+                        { label: 'Nenhum', value:null },
                         {label:"Alvenaria",value:"Alvenaria"},
                         {label:"Condominio",value:"Condominio"},
+                        {label:"Casa",value:"Casa"},
+                        {label:"Apartamento",value:"Apartamento"}
                     ]}
                     placeholder={{
                         label:"Tipo do Imovel",
@@ -72,6 +76,7 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
+                        { label: 'Nenhum', value:null },
                         { label: '1', value: 1 },
                         { label: '2', value: 2 },
                         { label: '3', value: 3 },
@@ -90,10 +95,10 @@ const Filter = ()=>{
                 <Select 
                     callback={onChanged}
                     styles={styles}
-                    items={!!citys && citys.map(city=>({
+                    items={!!citys && (citys.map(city=>({
                         label:city.nome,
                         value:city.nome
-                    }))}
+                    })))}
                     placeholder={{
                         label:"Cidade",
                         value:null
@@ -108,18 +113,17 @@ const Filter = ()=>{
                         onChangeText={(value)=>onChanged(value,'neigh')}
                     />
                 </KeyboardAvoidingView>
-                <Select 
-                    callback={onChanged}
-                    styles={styles}
-                    items={[
-                        { label: 'Até R$500', value: 500 }
-                    ]}
-                    placeholder={{
-                        label:"Preço",
-                        value:null
-                    }}
-                    name='price'
-                />
+        
+                <KeyboardAvoidingView>
+                    <TextInput
+                        placeholder="R$ Preço"
+                        style={styles.inputAndroid}
+                        placeholderTextColor="black"
+                        onChangeText={(value)=>onChanged(value,'price')}
+                        keyboardType="numeric"
+                    />
+                </KeyboardAvoidingView>
+
                 <TouchableOpacity style={styles.filter} onPress={()=>filterImoveis(filter)}>
                     <Text style={styles.buttonText}>Filtrar</Text>
                 </TouchableOpacity>

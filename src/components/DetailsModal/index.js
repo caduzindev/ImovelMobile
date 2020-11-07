@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{ useEffect, useRef } from 'react'
 import { Modal,View,ScrollView,Dimensions,Text } from 'react-native'
-import MapView from 'react-native-maps'
+import MapView,{Marker} from 'react-native-maps'
 import Svg,{ Circle,Text as Texto,Rect } from 'react-native-svg'
 import HeaderModal from '../HeaderModal'
 import Address from '../Address'
@@ -9,6 +9,8 @@ import { useImovel } from '../../contexts/Imovel'
 
 const DetailsModal = ({callback,visible})=> {
     const {imovel} = useImovel()
+    const mapRef = useRef()
+
     return (
         <Modal animationType='slide' onRequestClose={()=>{
             callback(false)
@@ -18,13 +20,31 @@ const DetailsModal = ({callback,visible})=> {
                 <ScrollView>
                     <MapView 
                         style={{height:300,width:Dimensions.get('window').width}}
-                        region={{
-                            latitude: -20.079886,
-                            longitude: -44.895811,
-                            latitudeDelta: 0.0922,
-                            longitudeDelta: 0.0421,
+                        zoomControlEnabled={true}
+                        ref={mapRef}
+                        onMapReady={()=>{
+                            setTimeout(()=>{
+                                mapRef.current.fitToCoordinates([{
+                                    latitude:parseFloat(imovel.address.lat),
+                                    longitude:parseFloat(imovel.address.long)
+                                }],{
+                                    edgePadding:{top:0,left:0,right:0,bottom:0},
+                                    animated:true
+                                })
+                            },2000)
                         }}
-                    />
+                    >
+                        <Marker
+                            title={imovel.title}
+                            key={imovel.id}
+                            description={imovel.description}
+                            coordinate={{
+                                latitude:parseFloat(imovel.address.lat),
+                                longitude:parseFloat(imovel.address.long)
+                            }}
+                            pinColor="#4682B4"
+                        />
+                    </MapView>
                     
                     <Address
                         cep={imovel.address.cep}
