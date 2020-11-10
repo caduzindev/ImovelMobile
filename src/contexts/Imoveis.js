@@ -58,7 +58,6 @@ const ImoveisProvider = ({children})=>{
     }
     const numberPageImovel = (number)=>{
         if(number){
-            console.log(number)
             searchImoveisFilter(`${URL_SERVER}api/?page=${number}`)
         }
     }
