@@ -10,7 +10,7 @@ const Header = ()=>{
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-                <Menu width={40} height={30} fill={'#fff'}/>
+                <Menu width={45} height={35} fill={'#fff'}/>
             </TouchableOpacity>
             <Text style={styles.logoName}>MyImoveisMG</Text>
         </View>

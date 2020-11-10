@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         flexWrap:'wrap',
+        backgroundColor:"#4682B4"
     },
     containerError:{
         flex:1,

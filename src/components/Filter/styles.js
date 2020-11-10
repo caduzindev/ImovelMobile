@@ -6,16 +6,16 @@ export const styles = StyleSheet.create({
         padding:15,
         flexDirection:'row',
         justifyContent:"space-around",
-        flexWrap:"wrap"
-    },
+        flexWrap:"wrap",
+        backgroundColor:'#4682B4'
+    }, 
     inputAndroid:{
-        borderWidth:1,
-        borderColor:'silver',
+        backgroundColor:"white",
         fontSize:19,
         marginTop:15,
         width:Dimensions.get('window').width/2.2,
         height:41,
-        color:'black'
+        color:'black' 
     },
     inputIOS:{
         borderWidth:1,
@@ -27,30 +27,34 @@ export const styles = StyleSheet.create({
         color:'black'
     },
     placeholder:{
-        color:"#000",
+        color:"black",
         fontStyle:'italic',
         fontWeight:'500'
     },
     title:{
         fontSize:35,
         fontWeight:"bold",
-        borderBottomColor:'black',
+        borderBottomColor:'white',
         borderBottomWidth:3,
-        marginLeft:"auto",
-        marginRight:"auto",
+        backgroundColor:'#4682B4',
+        width:'100%',
+        textAlign:"center",
+        color:'white'
     },
     filter:{
         width:200,
         height:50,
-        backgroundColor:'blue',
+        backgroundColor:'#268ce6',
         marginTop:20,
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:10
+        borderRadius:10,
+        borderColor:'white',
+        borderWidth:4,
     },
     buttonText:{
-        color:'#fff',
-        fontSize:20,
+        color:'white',
+        fontSize:25,
         letterSpacing:3,
         fontWeight:'bold'
     }

@@ -6,7 +6,6 @@ import Filter from '../../components/Filter'
 import Imoveis from '../../components/Imoveis'
 
 const Home = ()=>{
-
     const DATA = [
         {
             image:require("../../images/imovel1.jpg")

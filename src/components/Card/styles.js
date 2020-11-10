@@ -5,22 +5,23 @@ export const styles = StyleSheet.create({
         marginBottom:20,
     }, 
     content:{
-        backgroundColor:'#DCDCDC',
-        padding:5,
+        backgroundColor:'white',
+        padding:10,
         height:150
     },
     status:{
-        color:'orange',
+        color:'#268ce6',
+        fontWeight:'bold',
         fontSize:17,
     }, 
     title:{
         fontWeight:'bold',
-        fontSize:14,
+        fontSize:17,
         letterSpacing:1,
         width:150
     },
     desc:{
-        fontSize:16,
+        fontSize:17,
         width:150,
         marginBottom:5
     },

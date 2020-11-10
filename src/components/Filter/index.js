@@ -46,7 +46,6 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
-                        { label: 'Nenhum', value:null },
                         {label:"Aluga",value:"aluga"},
                         {label:"Venda",value:"venda"}
                     ]}
@@ -60,7 +59,6 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
-                        { label: 'Nenhum', value:null },
                         {label:"Alvenaria",value:"Alvenaria"},
                         {label:"Condominio",value:"Condominio"},
                         {label:"Casa",value:"Casa"},
@@ -76,7 +74,6 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
-                        { label: 'Nenhum', value:null },
                         { label: '1', value: 1 },
                         { label: '2', value: 2 },
                         { label: '3', value: 3 },

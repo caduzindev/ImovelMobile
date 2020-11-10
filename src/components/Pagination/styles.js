@@ -1,0 +1,41 @@
+import { StyleSheet,Dimensions } from 'react-native'
+
+export const styles = StyleSheet.create({
+    container:{
+        flexDirection:'row',
+        width:Dimensions.get('window').width,
+        padding:15,
+        justifyContent:'space-between',
+        alignItems:'center',
+        backgroundColor:'#4682B4'
+    },
+    buttonPaginate:{
+        backgroundColor:'#268ce6',
+        width:'20%',
+        height:35,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    containerButtons:{
+        flex:1,
+        flexDirection:'row',
+        flexGrow:1,
+        flexShrink:1,
+        flexWrap:'wrap',
+        padding:5,
+        justifyContent:'center'
+    },
+    cardPaginate:{
+        width:'20%',
+        backgroundColor:'white',
+        height:40,
+        justifyContent:'center',
+        borderColor:'#268ce6',
+        borderWidth:1
+    },
+    buttonTextPagination:{
+        textAlign:'center',
+        fontSize:20,
+        fontWeight:'bold',
+    }
+})

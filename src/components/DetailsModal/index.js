@@ -89,7 +89,7 @@ const DetailsModal = ({callback,visible})=> {
                     </Svg>
 
                     <View style={styles.viewDetails}>
-                        <Text style={styles.titleDetail}>Destalhes</Text>
+                        <Text style={styles.titleDetail}>Detalhes</Text>
                         <Text style={styles.textDetail}>{imovel.details}</Text>
                     </View>
                 </ScrollView>
