@@ -59,10 +59,10 @@ const Filter = ()=>{
                     callback={onChanged}
                     styles={styles}
                     items={[
-                        {label:"Alvenaria",value:"Alvenaria"},
-                        {label:"Condominio",value:"Condominio"},
-                        {label:"Casa",value:"Casa"},
-                        {label:"Apartamento",value:"Apartamento"}
+                        {label:"Alvenaria",value:"alvenaria"},
+                        {label:"Condominio",value:"condominio"},
+                        {label:"Casa",value:"casa"},
+                        {label:"Apartamento",value:"apartamento"}
                     ]}
                     placeholder={{
                         label:"Tipo do Imovel",
@@ -70,25 +70,15 @@ const Filter = ()=>{
                     }}
                     name="type"
                 />
-                <Select 
-                    callback={onChanged}
-                    styles={styles}
-                    items={[
-                        { label: '1', value: 1 },
-                        { label: '2', value: 2 },
-                        { label: '3', value: 3 },
-                        { label: '4', value: 4 },
-                        { label: '5', value: 5 },
-                        { label: '6', value: 6 },
-                        { label: '7', value: 7 },
-                        { label: '8', value: 8 },
-                    ]}
-                    placeholder={{
-                        label:"Domitorios",
-                        value:null
-                    }}
-                    name="dorms"
-                />
+                <KeyboardAvoidingView>
+                    <TextInput
+                        placeholder="Qt Dormitorios"
+                        style={styles.inputAndroid}
+                        placeholderTextColor="black"
+                        onChangeText={(value)=>onChanged(value,'dorms')}
+                        keyboardType="numeric"
+                    />
+                </KeyboardAvoidingView>
                 <Select 
                     callback={onChanged}
                     styles={styles}
@@ -121,7 +111,7 @@ const Filter = ()=>{
                     />
                 </KeyboardAvoidingView>
 
-                <TouchableOpacity style={styles.filter} onPress={()=>filterImoveis(filter)}>
+                <TouchableOpacity style={styles.filter} onPress={()=>{filterImoveis(filter)}}>
                     <Text style={styles.buttonText}>Filtrar</Text>
                 </TouchableOpacity>
             </View>

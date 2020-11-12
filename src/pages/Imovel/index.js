@@ -14,6 +14,7 @@ import Carousel from 'react-native-snap-carousel'
 import {useImovel} from '../../contexts/Imovel'
 import DetailsModal from '../../components/DetailsModal'
 import ContatoModal from '../../components/ContatoModal'
+import Contact from '../../icons/contact.svg'
 
 const Imovel = ()=>{
     const {imovel,searchImovel,loading} = useImovel()
@@ -24,8 +25,8 @@ const Imovel = ()=>{
 
     useEffect(()=>{
         navigation.setOptions({headerRight:()=>(
-            <TouchableOpacity>
-                <Text>Contato</Text>
+            <TouchableOpacity style={{marginRight:10}} onPress={()=>setModalContato(true)}>
+                <Contact width={40} height={40} fill={'#ffffff'} />
             </TouchableOpacity>
         )})
         searchImovel(route.params.imovelId)

@@ -1,0 +1,41 @@
+import { StyleSheet,Dimensions } from 'react-native'
+
+export const styles = StyleSheet.create({
+    containerSobre:{
+        flex:1,
+        backgroundColor:'#4682B4',
+    },
+    textTitle:{
+        color:'white',
+        fontSize:25,
+        width:Dimensions.get('window').width,
+        fontWeight:'bold',
+        backgroundColor:'#268ce6',
+        padding:15,
+        textAlign:'center',
+    },
+    cardSobre:{
+        flex:1,
+        flexDirection:'column',
+        alignItems:'center',
+        paddingTop:10,
+        paddingLeft:20,
+        paddingRight:20,
+        paddingBottom:10,
+        borderWidth:5,
+        borderColor:'white'
+    },
+    textTitleCard:{
+        fontSize:35,
+        letterSpacing:2,
+        color:'white'
+    },
+    containerText:{
+        width:'100%',
+        alignItems:'center',
+    },
+    textCard:{
+        fontSize:22,
+        color:'white'
+    }
+})

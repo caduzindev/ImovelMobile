@@ -16,7 +16,7 @@ const Imoveis = ()=>{
         }
     },[error])
 
-    const fadeIn = ()=>{
+    const fadeIn = ()=>{ 
         Animated.timing(fadeAnim,{
             toValue:1,
             duration:2000,
@@ -40,7 +40,7 @@ const Imoveis = ()=>{
                 {load && <Loading/>}
             </View>
             
-            {!load && <Pagination prev={prevPageImovel} next={nextPageImovel}/>}
+            {!load ? (<Pagination prev={prevPageImovel} next={nextPageImovel}/>):(<View/>)}
 
         </>
     )

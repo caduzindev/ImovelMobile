@@ -9,8 +9,8 @@ const ImoveisProvider = ({children})=>{
     const [imoveis,setImoveis] = useState([])
     const [error,setError] = useState(false)
     const [filterResult,setFilterResult] = useState({})
-    const [nextPage,setNextPage] = useState('')
-    const [prevPage,setPrevPage] = useState('')
+    const [nextPage,setNextPage] = useState(null)
+    const [prevPage,setPrevPage] = useState(null)
     const [load,setLoad] = useState(false)
     const [totalPage,setTotalPage] = useState(0)
     const [toPage,setToPage] = useState(0)
@@ -27,7 +27,7 @@ const ImoveisProvider = ({children})=>{
                 setNextPage(result.data.links.next)
                 setPrevPage(result.data.links.prev)
 
-                setTotalPage(result.data.meta.total)
+                setTotalPage(result.data.meta.last_page)
                 setToPage(result.data.meta.to)
                 setCurrentPage(result.data.meta.current_page)
 
@@ -43,29 +43,31 @@ const ImoveisProvider = ({children})=>{
         .filter(item=>!!item[1])) 
 
         setFilterResult(result)
-        searchImoveisFilter(nextPage)
+
+        searchImoveisFilter(URL_SERVER+'api',result)
+
     }
     const nextPageImovel = ()=>{
         if(nextPage != null){
-            searchImoveisFilter(nextPage)
+            searchImoveisFilter(nextPage,filterResult)
         }
     }
 
     const prevPageImovel = ()=>{
         if(prevPage != null){
-            searchImoveisFilter(prevPage)
+            searchImoveisFilter(prevPage,filterResult)
         }
     }
     const numberPageImovel = (number)=>{
         if(number){
-            searchImoveisFilter(`${URL_SERVER}api/?page=${number}`)
+            searchImoveisFilter(`${URL_SERVER}api/?page=${number}`,filterResult)
         }
     }
-    const searchImoveisFilter= (page)=>{
+    const searchImoveisFilter= (page,filter)=>{
         setLoad(true)
-
+        
         axios.get(`${page}`,{
-            params:{...filterResult},
+            params:{...filter},
             headers:{
                 'Content-Type':'application/json',
                 'Accept':'application/json'
@@ -75,6 +77,9 @@ const ImoveisProvider = ({children})=>{
             if(result.data.error){
                 setError(result.data.message)
                 setImoveis([])
+                setNextPage(null)
+                setPrevPage(null)
+                setLoad(false)
                 return
             }
             setError(false)
@@ -83,9 +88,10 @@ const ImoveisProvider = ({children})=>{
             setNextPage(result.data.links.next)
             setPrevPage(result.data.links.prev)
 
-            setTotalPage(result.data.meta.total)
+            setTotalPage(result.data.meta.last_page)
             setToPage(result.data.meta.to)
             setCurrentPage(result.data.meta.current_page)
+            
 
             setLoad(false)
         })
@@ -103,7 +109,9 @@ const ImoveisProvider = ({children})=>{
             totalPage,
             toPage,
             currentPage,
-            numberPageImovel
+            numberPageImovel,
+            prevPage,
+            nextPage
         }}>
             {children}
         </ImoveisContext.Provider>
@@ -111,7 +119,7 @@ const ImoveisProvider = ({children})=>{
 }
 
 export const useImovies = ()=>{
-    return {imoveis,setImoveis,filterImoveis,error,nextPageImovel,prevPageImovel,load,totalPage,toPage,currentPage,numberPageImovel} = useContext(ImoveisContext)
+    return {imoveis,setImoveis,filterImoveis,error,nextPageImovel,prevPageImovel,load,totalPage,toPage,currentPage,numberPageImovel,prevPage,nextPage} = useContext(ImoveisContext)
 }
 
 export default ImoveisProvider;
